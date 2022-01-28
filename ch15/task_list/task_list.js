@@ -26,7 +26,6 @@ const displayTaskList = tasks => {
 $(document).ready( () => {
     const taskString = localStorage.E15tasks;
     const tasks = (taskString) ? JSON.parse(taskString) : [];
-
     $("#add_task").click( () => {
         const task = $("#task").val();
         const dateString = $("#due_date").val();
@@ -54,6 +53,16 @@ $(document).ready( () => {
     });   
     
     $("#filter").click( () => {
+        let searchTerm = prompt("What do you want to filter by (try task names/due date)?");
+        if(!searchTerm) 
+            displayTaskList(tasks);
+        else {
+            console.log(searchTerm);
+            console.log(tasks.filter(index => index === ["1","1/2/22"]));
+            let filteredTasks = tasks.filter(index => index.includes(searchTerm));
+            console.log(filteredTasks);
+            displayTaskList(filteredTasks);
+        }
 
     });
     
